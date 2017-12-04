@@ -1,3 +1,26 @@
-<p>
-  search works!
-</p>
+<div class="container top30">
+  <div class="row">
+    <div class="col-md-3">
+      <label for="termino">Buscar Artista</label>
+      <input 
+        type="text" 
+        placeholder="Busque artista..."
+        class="form-control"
+        (keyup)="buscarArtista()"
+        [(ngModel)]="termino">
+    </div>
+    <div class="col-md-9" *ngIf="termino">
+      <h2 class="text-capitalize" >{{termino}}</h2>
+      <hr>
+
+      <div class="row">
+        <div *ngFor="let artista of _spotity.artistas" 
+              class="col-md-4 text-center puntero"
+              [routerLink]="['/artist', artista.id]">
+          <img [src]="artista.images | sinfoto" alt="" class="img-thumbnail">
+          <p>{{artista.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
